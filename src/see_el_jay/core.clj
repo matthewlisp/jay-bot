@@ -51,3 +51,11 @@
 
   (println "Starting the see-el-jay")
   (<!! (p/start token handler)))
+
+
+;; General ideas:
+;; /learn - Show resources for learning clojure
+;; /snippetify -txt -img - Save snippet into pastebin/gist or carbon
+;; /lib [clojar] code - Fast test a library (that's a hard one)
+;; /reset - Clear memory and restart application
+;; Auto crawl into communities such as clojure Reditt and repost it
