@@ -19,4 +19,4 @@
   (testing "Don't allow storing symbols, only allow local scope values"
     (is (= error-msg-symstore (run-code "/run (def my-map [1 2 3])"))))
   (testing "recover from exceptions"
-    (is (= "caught exception: Wrong number of args (0) passed to: core/repeat" (run-code "/run (take 5 (repeat ))")))))
+    (is (= "Exception: Wrong number of args (0) passed to: core/repeat" (run-code "/run (take 5 (repeat ))")))))

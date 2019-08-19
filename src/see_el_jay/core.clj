@@ -8,9 +8,11 @@
   (:gen-class))
 
 
+;; Raise exception if the answer ir > 3000 characters
 (defn run-code
   [strg]
-  (let [code-output (eval (read-string (subs strg 5)))]
+  (let [code-output (try (eval (read-string (subs strg 5)))
+                         (catch Exception e (str "Exception: " (.getMessage e))))]
     code-output))
 
 (def token (env :telegram-token))
