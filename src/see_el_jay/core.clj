@@ -27,10 +27,11 @@
                   (t/send-text token id "Help is on the way")))
 
   (h/command-fn "run"
-                (fn [{:keys [text chat]}]
+                (fn [{:keys [text chat message_id]}]
                   (println "Help was requested in " chat)
                   (t/send-text token (:id chat)
-                               {:parse_mode "HTML"}
+                               {:parse_mode "HTML"
+                                :reply_to_message_id message_id}
                                (str "<code>" (run-code text) "</code>"))))
   ;; TODO
   ;; Handle exceptions
