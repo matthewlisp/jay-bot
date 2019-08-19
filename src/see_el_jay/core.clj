@@ -9,8 +9,9 @@
 
 
 (defn run-code
-  [str]
-  (load-string (subs str 5)))
+  [strg]
+  (let [code-output (eval (read-string (subs strg 5)))]
+    code-output))
 
 (def token (env :telegram-token))
 
@@ -28,17 +29,12 @@
 
   (h/command-fn "run"
                 (fn [{:keys [text chat message_id]}]
-                  (println "Help was requested in " chat)
+                  (println "Run command issued at " chat)
                   (t/send-text token (:id chat)
-                               {:parse_mode "HTML"
-                                :reply_to_message_id message_id}
-                               (str "<code>" (run-code text) "</code>"))))
-  ;; TODO
-  ;; Handle exceptions
-  ;; Handle when get's too long to execute
-  ;; Should be non-blocking
-  ;; Should answer the user that sent the code to run
-
+                               {:reply_to_message_id message_id
+                                :parse_mode "HTML"}
+                               (str "<code>" (pr-str (run-code text)) "</code>"))))
+  
   (h/message-fn
    (fn [{{id :id} :chat :as message}]
      (println "Intercepted message: " message)
