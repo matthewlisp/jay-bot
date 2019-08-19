@@ -8,6 +8,10 @@
   (:gen-class))
 
 
+(defn run-code
+  [str]
+  (load-string (subs str 5)))
+
 (def token (env :telegram-token))
 
 (h/defhandler handler
@@ -25,7 +29,9 @@
   (h/command-fn "run"
                 (fn [{:keys [text chat]}]
                   (println "Help was requested in " chat)
-                  (t/send-text token (:id chat) (load-string (subs text 5)))))
+                  (t/send-text token (:id chat)
+                               {:parse_mode "HTML"}
+                               (str "<code>" (run-code text) "</code>"))))
   ;; TODO
   ;; Handle exceptions
   ;; Handle when get's too long to execute
