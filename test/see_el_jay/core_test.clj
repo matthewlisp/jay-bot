@@ -16,7 +16,5 @@
   (testing "Infinite loop or code that get's too long to run"
     (is (= error-msg-terminated (run-code "/run (repeat \"Hi\")"))))
   (testing "Snippet too big to be processed") ;; DO LATER
-  (testing "Don't allow storing symbols, only allow local scope values"
-    (is (= error-msg-symstore (run-code "/run (def my-map [1 2 3])"))))
   (testing "recover from exceptions"
     (is (= "Exception: Wrong number of args (0) passed to: core/repeat" (run-code "/run (take 5 (repeat ))")))))

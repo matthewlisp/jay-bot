@@ -4,16 +4,20 @@
             [environ.core :refer [env]]
             [morse.handlers :as h]
             [morse.polling :as p]
-            [morse.api :as t])
-  (:gen-class))
+            [morse.api :as t]))
 
 
-;; Raise exception if the answer ir > 3000 characters
+
+
 (defn run-code
+  "Run given expression and returns a string as a result"
   [strg]
-  (let [code-output (try (eval (read-string (subs strg 5)))
-                         (catch Exception e (str "Exception: " (.getMessage e))))]
-    code-output))
+  (let [code-output (try (eval (read-string (subs strg 5))) (catch Exception e (str "Exception: " (.getMessage e))))
+        str-output (pr-str code-output)
+        output-size (count str-output)]
+    (if (> output-size 3000)
+      "Exception: output ommited. The output is too big."
+      str-output)))
 
 (def token (env :telegram-token))
 
@@ -35,7 +39,7 @@
                   (t/send-text token (:id chat)
                                {:reply_to_message_id message_id
                                 :parse_mode "HTML"}
-                               (str "<code>" (pr-str (run-code text)) "</code>"))))
+                               (str "<code>" (run-code text) "</code>"))))
   
   (h/message-fn
    (fn [{{id :id} :chat :as message}]
