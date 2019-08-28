@@ -9,7 +9,7 @@
 
 
 ;; (def token (env :telegram-token))
-(def token "981703931:AAFUn_wWqiYigy7UZbdr8stOcw_WQt5cyDE")
+  (def token "hidden")
 
 ;; This function get's thread stucked if used with infinite lazy seq's, made a workaround directly inside the telegram handler for run command.
 (defn run-code
