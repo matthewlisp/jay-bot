@@ -9,8 +9,7 @@
                  [environ             "1.1.0"]
                  [morse               "0.2.4"]]
 
-  :plugins [[lein-environ "1.1.0"]
-            [lein-heroku "0.5.3"]]
+  :plugins [[lein-environ "1.1.0"]]
 
   :main see-el-jay.core
   :target-path "target/%s"

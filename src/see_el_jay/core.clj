@@ -8,8 +8,7 @@
   (:gen-class))
 
 
-;; (def token (env :telegram-token))
-  (def token "hidden")
+(def token (env :telegram-token))
 
 ;; This function get's thread stucked if used with infinite lazy seq's, made a workaround directly inside the telegram handler for run command.
 (defn run-code
@@ -44,6 +43,10 @@
                                  {:reply_to_message_id message_id
                                   :parse_mode "HTML"}
                                  (str "<code>" (deref exec-code 2000 :timeout) "</code>")))))
+  (h/command-fn "learn"
+                (fn [{{id :id :as chat} :chat}]
+                  (println "Help was requested in " chat)
+                  (t/send-text token id "https://github.com/matthewlisp/learn-clojure")))
   
   (h/message-fn
    (fn [{{id :id} :chat :as message}]
