@@ -4,7 +4,8 @@
             [environ.core :refer [env]]
             [morse.handlers :as h]
             [morse.polling :as p]
-            [morse.api :as t]))
+            [morse.api :as t])
+  (:gen-class))
 
 
 ;; (def token (env :telegram-token))
