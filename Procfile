@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/uberjar/see-el-jay-0.1.0-SNAPSHOT-standalone.jar clojure.main -m see-el-jay-0.1.0-SNAPSHOT-standalone.web
+web: java $JVM_OPTS -cp target/uberjar/jaybot.jar clojure.main -m see-el-jay.core

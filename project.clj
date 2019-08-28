@@ -13,13 +13,9 @@
             [lein-heroku "0.5.3"]]
 
   :main see-el-jay.core
-  :aot [see-el-jay.core]
   :target-path "target/%s"
+  :min-lein-version "2.0.0"
+  :uberjar-name "jaybot.jar"
   
 
-  :profiles {:uberjar {:aot :all}}
-  :heroku {
-           :app-name "vast-atoll-73500"
-           :jdk-version "1.8"
-           :include-files ["target/uberjar/see-el-jay-0.1.0-SNAPSHOT-standalone.jar"]
-           :process-types { "web" "java -jar target/uberjar/see-el-jay-0.1.0-SNAPSHOT-standalone.jar" }})
+  :profiles {:uberjar {:aot :all}})
